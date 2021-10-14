@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     right: 0
   }
-}))
+}));
 
 const Layout = ({ children }) => {
   const classes = useStyles();
@@ -24,6 +24,6 @@ const Layout = ({ children }) => {
       </Box>
     </Box>
   );
-}
+};
 
 export default Layout;

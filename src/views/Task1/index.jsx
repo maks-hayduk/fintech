@@ -9,7 +9,8 @@ const Task1 = () => (
       surname: ''
     }}
     onSubmit={(values) => {
-      alert(`Hello ${values.name} ${values.surname}`)
+      // eslint-disable-next-line
+      alert(`Hello ${values.name} ${values.surname}`);
     }}
   >
     {({ handleSubmit }) => (
