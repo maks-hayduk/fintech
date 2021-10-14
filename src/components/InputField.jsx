@@ -27,9 +27,7 @@ const InputField = ({ name, label, placeholder, ...props }) => {
           ...props
         }}
       />
-      {meta.touched && meta.error ? (
-        <Box className={classes.error}>{meta.error}</Box>
-      ) : null}
+      {meta.touched && meta.error ? <Box className={classes.error}>{meta.error}</Box> : null}
     </Box>
   );
 };

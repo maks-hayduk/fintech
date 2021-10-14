@@ -9,8 +9,8 @@
     "eject": "react-scripts eject",
     "pretty": "pretty-quick",
     "prepare": "husky install",
-    "lint": "eslint --fix --ext .js,.jsx .",
-    "precommit": "npm outdated || true && npm run pretty --staged && npm run lint --max-warnings=0"
+    "lint": "lint-staged",
+    "precommit": "npm outdated || true && npm run lint"
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
@@ -33,6 +33,7 @@
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.2",
+    "lint-staged": "^11.2.3",
     "prettier": "^2.4.1",
     "pretty-quick": "^3.1.1"
   },
@@ -40,6 +41,12 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "pretty-quick --staged",
+      "eslint --fix --ext .js,.jsx . --max-warnings=0"
     ]
   },
   "browserslist": {

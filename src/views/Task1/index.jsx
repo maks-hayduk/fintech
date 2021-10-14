@@ -15,17 +15,9 @@ const Task1 = () => (
   >
     {({ handleSubmit }) => (
       <Form>
-        <InputField
-          name="name"
-          label="Name"
-          placeholder="Enter name"
-        />
+        <InputField name="name" label="Name" placeholder="Enter name" />
         <Box mt={2} mb={2}>
-          <InputField
-            name="surname"
-            label="Surname"
-            placeholder="Enter surname"
-          />
+          <InputField name="surname" label="Surname" placeholder="Enter surname" />
         </Box>
         <Button onClick={handleSubmit}>Submit</Button>
       </Form>
