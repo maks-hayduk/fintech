@@ -24,14 +24,17 @@ const navigation = [
   {
     title: 'Second task',
     linkTo: routes.task2
+  },
+  {
+    title: 'Fourth task',
+    linkTo: routes.task4
   }
 ];
 
-const Menu = ({ open, handleDrawerClose, setTitle }) => {
+const Menu = ({ open, handleDrawerClose }) => {
   const theme = useTheme();
 
-  const onItemClick = (title) => {
-    setTitle(title);
+  const onItemClick = () => {
     handleDrawerClose();
   };
 
@@ -59,13 +62,7 @@ const Menu = ({ open, handleDrawerClose, setTitle }) => {
       <Divider />
       <List>
         {navigation.map((nav) => (
-          <ListItem
-            button
-            component={Link}
-            to={nav.linkTo}
-            key={nav.linkTo}
-            onClick={() => onItemClick(nav.title)}
-          >
+          <ListItem button component={Link} to={nav.linkTo} key={nav.linkTo} onClick={onItemClick}>
             <ListItemText primary={nav.title} />
           </ListItem>
         ))}

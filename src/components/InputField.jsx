@@ -12,7 +12,7 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   }
 }));
 
-const InputField = ({ name, label, placeholder, ...props }) => {
+const InputField = ({ name, label, placeholder, InputProps, ...props }) => {
   const classes = useStyles();
   const [field, meta] = useField(name);
 

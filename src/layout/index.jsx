@@ -1,14 +1,14 @@
-import * as React from 'react';
+import { useState } from 'react';
 import {
   Box,
   CssBaseline,
   AppBar as MuiAppBar,
   Toolbar,
   Typography,
-  IconButton
+  IconButton,
+  styled
 } from '@material-ui/core';
 import { Menu as MenuIcon } from '@material-ui/icons';
-import { styled } from '@material-ui/styles';
 import DrawerHeader from './DrawerHeader';
 import Menu from './Menu';
 import { drawerWidth } from './const';
@@ -50,8 +50,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 export default function PersistentDrawerLeft({ children }) {
-  const [open, setOpen] = React.useState(false);
-  const [title, setTitle] = React.useState('First task');
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -76,11 +75,11 @@ export default function PersistentDrawerLeft({ children }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            {title}
+            FinTech
           </Typography>
         </Toolbar>
       </AppBar>
-      <Menu open={open} handleDrawerClose={handleDrawerClose} setTitle={setTitle} />
+      <Menu open={open} handleDrawerClose={handleDrawerClose} />
       <Main open={open}>
         <DrawerHeader />
         {children}
