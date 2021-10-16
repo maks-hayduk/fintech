@@ -1,29 +1,90 @@
-import { Box, makeStyles } from '@material-ui/core';
+import * as React from 'react';
+import {
+  Box,
+  CssBaseline,
+  AppBar as MuiAppBar,
+  Toolbar,
+  Typography,
+  IconButton
+} from '@material-ui/core';
+import { Menu as MenuIcon } from '@material-ui/icons';
+import { styled } from '@material-ui/styles';
+import DrawerHeader from './DrawerHeader';
 import Menu from './Menu';
+import { drawerWidth } from './const';
 
-const useStyles = makeStyles(() => ({
-  content: {
-    width: 'calc(100% - 200px)',
-    position: 'absolute',
-    right: 0
-  }
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    marginLeft: 0,
+    ...(open && {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen
+      }),
+      marginLeft: `${drawerWidth}px`
+    })
+  })
+);
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open'
+})(({ theme, open }) => ({
+  transition: theme.transitions.create(['margin', 'width'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen
+  }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    })
+  })
 }));
 
-const Layout = ({ children }) => {
-  const classes = useStyles();
+export default function PersistentDrawerLeft({ children }) {
+  const [open, setOpen] = React.useState(false);
+  const [title, setTitle] = React.useState('First task');
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Menu />
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, p: 3 }}
-        className={classes.content}
-      >
+      <CssBaseline />
+      <AppBar position="fixed" open={open}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap component="div">
+            {title}
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Menu open={open} handleDrawerClose={handleDrawerClose} setTitle={setTitle} />
+      <Main open={open}>
+        <DrawerHeader />
         {children}
-      </Box>
+      </Main>
     </Box>
   );
-};
-
-export default Layout;
+}

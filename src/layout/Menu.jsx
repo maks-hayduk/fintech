@@ -1,8 +1,20 @@
-import { Drawer, List, ListItem, ListItemText } from '@material-ui/core';
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+  Divider,
+  useTheme
+} from '@material-ui/core';
+import {
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon
+} from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { routes } from 'src/const';
-
-const drawerWidth = 200;
+import DrawerHeader from './DrawerHeader';
+import { drawerWidth } from './const';
 
 const navigation = [
   {
@@ -15,22 +27,51 @@ const navigation = [
   }
 ];
 
-const Menu = () => (
-  <Drawer
-    variant="permanent"
-    anchor="left"
-    PaperProps={{
-      style: { width: drawerWidth }
-    }}
-  >
-    <List>
-      {navigation.map(nav => (
-        <ListItem button component={Link} to={nav.linkTo} key={nav.linkTo}>
-          <ListItemText primary={nav.title} />
-        </ListItem>
-      ))}
-    </List>
-  </Drawer>
-);
+const Menu = ({ open, handleDrawerClose, setTitle }) => {
+  const theme = useTheme();
+
+  const onItemClick = (title) => {
+    setTitle(title);
+    handleDrawerClose();
+  };
+
+  return (
+    <Drawer
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0
+      }}
+      variant="persistent"
+      anchor="left"
+      PaperProps={{
+        style: {
+          width: drawerWidth,
+          boxSizing: 'border-box'
+        }
+      }}
+      open={open}
+    >
+      <DrawerHeader>
+        <IconButton onClick={handleDrawerClose}>
+          {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+        </IconButton>
+      </DrawerHeader>
+      <Divider />
+      <List>
+        {navigation.map((nav) => (
+          <ListItem
+            button
+            component={Link}
+            to={nav.linkTo}
+            key={nav.linkTo}
+            onClick={() => onItemClick(nav.title)}
+          >
+            <ListItemText primary={nav.title} />
+          </ListItem>
+        ))}
+      </List>
+    </Drawer>
+  );
+};
 
 export default Menu;
