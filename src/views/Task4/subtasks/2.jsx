@@ -5,7 +5,7 @@ import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
 export const calculate_P = (S, n, i) =>
-  (Number(S) * Math.E ** (-1 * (Number(i) / 100) * Number(n))).toFixed(2);
+  (Number(S) * Math.E ** (-1 * (Number(i) / 100) * Number(n))).toFixed(4);
 
 const Task4_1 = () => {
   const [result, setResult] = useState();
@@ -34,9 +34,7 @@ const Task4_1 = () => {
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
               <Box mt={2}>
-                <Typography>
-                  Cума грошей (капітал), що даються в борг: {result.toFixed(2)}
-                </Typography>
+                <Typography>Cума грошей (капітал), що даються в борг: {result}</Typography>
               </Box>
             )}
           </Form>

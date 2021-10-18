@@ -5,13 +5,13 @@ import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
 export const calculate_S = (P, n, i) =>
-  (Number(P) * Math.E ** ((Number(i) / 100) * Number(n))).toFixed(2);
+  (Number(P) * Math.E ** ((Number(i) / 100) * Number(n))).toFixed(4);
 
 const Task4_1 = () => {
   const [result, setResult] = useState();
 
   return (
-    <CardWrapper title="Розрахунок суми боргу">
+    <CardWrapper title="Визначити нарощену суму за n років">
       <Formik
         initialValues={{
           p: '',
@@ -35,7 +35,7 @@ const Task4_1 = () => {
             {result && (
               <Box mt={2}>
                 <Typography>
-                  Cума боргу на момент закінчення угоди через {values.n} років: {result.toFixed(2)}
+                  Нарощена сума на момент закінчення угоди через {values.n} років: {result}
                 </Typography>
               </Box>
             )}

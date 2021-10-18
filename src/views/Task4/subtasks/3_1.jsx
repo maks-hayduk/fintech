@@ -4,13 +4,13 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
-export const calculate_S = (P, m) => Number(P) * Number(m);
+export const calculate_S = (P, m) => (Number(P) * Number(m)).toFixed(4);
 
 const Task4_3_1 = () => {
   const [result, setResult] = useState();
 
   return (
-    <CardWrapper title="Розрахунок суми боргу з зміною сили росту">
+    <CardWrapper title="Визначити нарощену суму за n років з зміною сили росту">
       <Formik
         initialValues={{
           p: '',
@@ -29,9 +29,7 @@ const Task4_3_1 = () => {
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
               <Box mt={2}>
-                <Typography>
-                  Розрахунок суми боргу з зміною сили росту: {result.toFixed(2)}
-                </Typography>
+                <Typography>Розрахунок суми боргу з зміною сили росту: {result}</Typography>
               </Box>
             )}
           </Form>

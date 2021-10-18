@@ -9,7 +9,7 @@ export const calculate_multiplier = (sigma_p, a_p, n_p) => {
   const a = Number(a_p) / 100;
   const n = Number(n_p);
 
-  return Math.E ** ((sigma / Math.log(a)) * (a ** n - 1));
+  return (Math.E ** ((sigma / Math.log(a)) * (a ** n - 1))).toFixed(4);
 };
 
 const Task4_4 = () => {
@@ -39,9 +39,7 @@ const Task4_4 = () => {
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
               <Box mt={2}>
-                <Typography>
-                  Множник нарощення експонентної залежності: {result.toFixed(2)}
-                </Typography>
+                <Typography>Множник нарощення експонентної залежності: {result}</Typography>
               </Box>
             )}
           </Form>

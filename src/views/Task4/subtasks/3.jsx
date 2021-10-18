@@ -9,7 +9,7 @@ export const calculate_multiplier = (sigma_p, a_p, n_p) => {
   const a = Number(a_p) / 100;
   const n = Number(n_p);
 
-  return Math.E ** (sigma * n + (a * n ** 2) / 2);
+  return (Math.E ** (sigma * n + (a * n ** 2) / 2)).toFixed(4);
 };
 
 const Task4_3 = () => {
@@ -39,7 +39,7 @@ const Task4_3 = () => {
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
               <Box mt={2}>
-                <Typography>Множник нарощення лінійної залежності: {result.toFixed(2)}</Typography>
+                <Typography>Множник нарощення лінійної залежності: {result}</Typography>
               </Box>
             )}
           </Form>

@@ -4,7 +4,7 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
-export const calculate_P = (S, m) => Number(S) * Number(m);
+export const calculate_P = (S, m) => (Number(S) * Number(m)).toFixed(4);
 
 const Task4_3_2 = () => {
   const [result, setResult] = useState();
@@ -30,7 +30,7 @@ const Task4_3_2 = () => {
             {result && (
               <Box mt={2}>
                 <Typography>
-                  Вартість отриманої за борг суми з зміною сили росту: {result.toFixed(2)}
+                  Вартість отриманої за борг суми з зміною сили росту: {result}
                 </Typography>
               </Box>
             )}
