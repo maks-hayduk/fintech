@@ -22,9 +22,14 @@ const Task4_3_2 = () => {
       >
         {({ handleSubmit }) => (
           <Form>
-            <InputField name="s" label="S" placeholder="Enter S" endAdornment="$" />
+            <InputField
+              name="s"
+              label="Боргове зобовязання"
+              placeholder="Боргове зобовязання"
+              endAdornment="$"
+            />
             <Box mt={2} mb={2}>
-              <InputField name="m" label="Multiplier" placeholder="Enter multiplier" />
+              <InputField name="m" label="Множник" placeholder="Множник" />
             </Box>
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (

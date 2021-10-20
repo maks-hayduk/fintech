@@ -29,12 +29,17 @@ const Task4_4 = () => {
       >
         {({ handleSubmit }) => (
           <Form>
-            <InputField name="sigma" label="Sigma" placeholder="Enter Sigma" endAdornment="%" />
+            <InputField name="sigma" label="Сила росту" placeholder="Сила росту" endAdornment="%" />
             <Box mt={2} mb={2}>
-              <InputField name="a" label="A" placeholder="Enter A" endAdornment="%" />
+              <InputField
+                name="a"
+                label="Відсоткова ставка"
+                placeholder="Відсоткова ставка"
+                endAdornment="%"
+              />
             </Box>
             <Box mt={2} mb={2}>
-              <InputField name="n" label="N" placeholder="Enter N" endAdornment="years" />
+              <InputField name="n" label="Років" placeholder="Років" endAdornment="years" />
             </Box>
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
