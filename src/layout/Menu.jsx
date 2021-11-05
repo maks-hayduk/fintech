@@ -32,6 +32,10 @@ const navigation = [
   {
     title: 'Fourth task',
     linkTo: routes.task4
+  },
+  {
+    title: 'Seventh task',
+    linkTo: routes.task7
   }
 ];
 
