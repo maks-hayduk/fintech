@@ -9,7 +9,7 @@ import Task3_2_2 from './subtasks/2_2';
 const Task3 = () => {
   const [value, setValue] = useState(0);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (_, newValue) => {
     setValue(newValue);
   };
 
