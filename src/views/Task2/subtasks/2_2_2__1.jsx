@@ -18,7 +18,7 @@ const Task2_2_2__1 = () => {
           n: 1
         }}
         onSubmit={(values) => {
-          const res = calculate(Number(values.n), Number(values.m), Number(values.j));
+          const res = calculate(Number(values.s), Number(values.d), Number(values.n));
           setResult([res]);
         }}
       >
