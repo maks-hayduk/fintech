@@ -4,50 +4,46 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
-export const calculate_s = (p, j, m, n) => (p * (1 + j / m) ** (n * m)).toFixed(2);
+export const calculate = (s, n, m, j) => (s / (1 + j / m) ** (m * n)).toFixed(4);
 
-const Task2_1_1 = () => {
+const Task2_2_1__2 = () => {
   const [result, setResult] = useState();
 
   return (
-    <CardWrapper title="2.1.1 Номінальна ставка відсотка">
+    <CardWrapper title="">
       <Formik
         initialValues={{
-          p: 1,
-          j: 0.01,
+          s: 1,
+          n: 1,
           m: 1,
-          n: 1
+          j: 0.01
         }}
         onSubmit={(values) => {
-          const res = calculate_s(
-            Number(values.p),
-            Number(values.j),
+          const res = calculate(
+            Number(values.s),
+            Number(values.n),
             Number(values.m),
-            Number(values.n)
+            Number(values.j)
           );
           setResult([res]);
         }}
       >
         {({ handleSubmit }) => (
           <Form>
-            <InputField name="p" label="Початкова величина боргу" placeholder="" />
+            <InputField name="s" label="Нарощена сума" placeholder="" />
             <Box mt={2}>
-              <InputField
-                name="j"
-                label="Річна ставка у вигляді десяткового дробу"
-                placeholder=""
-              />
+              <InputField name="n" label="Кількість років" placeholder="" />
             </Box>
             <Box mt={2}>
               <InputField name="m" label="кількість нарахувань у році" placeholder="" />
             </Box>
             <Box mt={2}>
-              <InputField name="n" label="тривалість угоди в роках" placeholder="" />
+              <InputField name="j" label="номінальна відсоткова ставка" placeholder="" />
             </Box>
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
               <Box mt={2}>
-                <Typography>S: {result}</Typography>
+                <Typography>Початкова величина боргу: {result}</Typography>
               </Box>
             )}
           </Form>
@@ -57,4 +53,4 @@ const Task2_1_1 = () => {
   );
 };
 
-export default Task2_1_1;
+export default Task2_2_1__2;

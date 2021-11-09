@@ -4,26 +4,28 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
-export const calculate_s = (p, j, m, n) => (p * (1 + j / m) ** (n * m)).toFixed(2);
+export const calculate2_1S = (p, i, n) => (p * (1 + i) ** n).toFixed(2);
 
-const Task2_1_1 = () => {
+export const calculate2_1Scd = (p, i, c, d) => (p * (1 + i) ** c * (1 + d * i)).toFixed(2);
+
+const Task2_1__2 = () => {
   const [result, setResult] = useState();
 
   return (
-    <CardWrapper title="2.1.1 Номінальна ставка відсотка">
+    <CardWrapper>
       <Formik
         initialValues={{
           p: 1,
-          j: 0.01,
-          m: 1,
-          n: 1
+          i: 0.01,
+          c: 1,
+          d: 0.01
         }}
         onSubmit={(values) => {
-          const res = calculate_s(
+          const res = calculate2_1Scd(
             Number(values.p),
-            Number(values.j),
-            Number(values.m),
-            Number(values.n)
+            Number(values.i),
+            Number(values.c),
+            Number(values.d)
           );
           setResult([res]);
         }}
@@ -33,16 +35,16 @@ const Task2_1_1 = () => {
             <InputField name="p" label="Початкова величина боргу" placeholder="" />
             <Box mt={2}>
               <InputField
-                name="j"
+                name="i"
                 label="Річна ставка у вигляді десяткового дробу"
                 placeholder=""
               />
             </Box>
             <Box mt={2}>
-              <InputField name="m" label="кількість нарахувань у році" placeholder="" />
+              <InputField name="c" label="Ціла частина років нарахування" placeholder="" />
             </Box>
             <Box mt={2}>
-              <InputField name="n" label="тривалість угоди в роках" placeholder="" />
+              <InputField name="d" label="Дробова частина років" placeholder="" />
             </Box>
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
@@ -57,4 +59,4 @@ const Task2_1_1 = () => {
   );
 };
 
-export default Task2_1_1;
+export default Task2_1__2;
