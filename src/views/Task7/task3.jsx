@@ -1,8 +1,32 @@
 import { Button, Box, Typography } from '@material-ui/core';
 import { Form, Formik } from 'formik';
-import InputField from 'src/components/InputField';
 import { useState } from 'react';
+import InputField from 'src/components/InputField';
+import Table from 'src/components/Table';
 import { R } from './task2';
+
+const tableConfig = [
+  {
+    title: 'Рік',
+    value: 'index'
+  },
+  {
+    title: 'Проценти',
+    value: 'pers'
+  },
+  {
+    title: 'Внески',
+    value: 'vnsk'
+  },
+  {
+    title: 'Витрати за позикою',
+    value: 'vtr'
+  },
+  {
+    title: 'Накопичення на кінець року',
+    value: 'nkp'
+  }
+];
 
 export const calc_s = (i, n) => ((1 + i) ** n - 1) / i;
 
@@ -17,6 +41,7 @@ export const wytrty = (d, g, i, n) => ps(d, g) + R(d, i, n);
 
 const Task3 = () => {
   const [result, setResult] = useState();
+  const [rows, setRows] = useState();
 
   return (
     <Formik
@@ -62,6 +87,18 @@ const Task3 = () => {
           nkp: arr_res
         };
 
+        const tableData = [];
+
+        for (let i = 0; i < values.n; i += 1) {
+          tableData.push({
+            pers: dict.pers,
+            vnsk: dict.vnsk[i],
+            vtr: dict.vtr[i],
+            nkp: dict.nkp[i]
+          });
+        }
+
+        setRows(tableData);
         setResult(dict);
       }}
     >
@@ -100,6 +137,11 @@ const Task3 = () => {
                 </Typography>
               </Box>
             </>
+          )}
+          {rows && (
+            <Box mt={2} mb={2}>
+              <Table rows={rows} tableConfig={tableConfig} />
+            </Box>
           )}
         </Form>
       )}
