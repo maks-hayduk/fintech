@@ -22,6 +22,7 @@ const InputField = ({ name, label, placeholder, InputProps, ...props }) => {
         label={label}
         placeholder={placeholder}
         variant="outlined"
+        type="number"
         InputProps={{
           ...field,
           ...props
