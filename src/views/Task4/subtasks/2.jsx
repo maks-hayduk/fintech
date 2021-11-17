@@ -14,9 +14,9 @@ const Task4_1 = () => {
     <CardWrapper title="Обрахувати вартість отриманої за борг суми">
       <Formik
         initialValues={{
-          s: '',
-          n: '',
-          i: ''
+          s: 200000,
+          n: 7,
+          i: 5
         }}
         onSubmit={(values) => {
           setResult(calculate_P(values.s, values.n, values.i));

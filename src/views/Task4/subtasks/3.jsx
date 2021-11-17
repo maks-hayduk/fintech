@@ -19,9 +19,9 @@ const Task4_3 = () => {
     <CardWrapper title="Розрахунок множника нарощення для лінійної залежності">
       <Formik
         initialValues={{
-          sigma: '',
-          a: '',
-          n: ''
+          sigma: 3,
+          a: 3,
+          n: 7
         }}
         onSubmit={(values) => {
           setResult(calculate_multiplier(values.sigma, values.a, values.n));

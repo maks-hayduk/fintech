@@ -21,9 +21,9 @@ const Task3_1_2 = () => {
         initialValues={{
           year: '366',
           percentage: 'simple',
-          s: '',
-          p: '',
-          i: ''
+          s: 15000,
+          p: 10000,
+          i: 25
         }}
         onSubmit={(values) => {
           if (values.percentage === 'simple') {

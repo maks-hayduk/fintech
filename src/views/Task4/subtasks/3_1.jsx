@@ -10,7 +10,7 @@ const Task4_3_1 = () => {
   const [result, setResult] = useState();
 
   return (
-    <CardWrapper title="Визначити нарощену суму за n років з зміною сили росту">
+    <CardWrapper title="Визначити нарощену суму з зміною сили росту">
       <Formik
         initialValues={{
           p: '',

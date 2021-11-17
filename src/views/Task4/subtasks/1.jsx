@@ -14,9 +14,9 @@ const Task4_1 = () => {
     <CardWrapper title="Визначити нарощену суму за n років">
       <Formik
         initialValues={{
-          p: '',
-          n: '',
-          i: ''
+          p: 1000000,
+          n: 5,
+          i: 10
         }}
         onSubmit={(values) => {
           setResult(calculate_S(values.p, values.n, values.i));
