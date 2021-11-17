@@ -34,12 +34,12 @@ const Task4 = () => {
         <Box mt={3}>
           <Task4_4 />
         </Box>
-        <Box mt={3}>
+        {/* <Box mt={3}>
           <Task4_3_1 />
         </Box>
         <Box mt={3}>
           <Task4_3_2 />
-        </Box>
+        </Box> */}
       </TabPanel>
     </Box>
   );

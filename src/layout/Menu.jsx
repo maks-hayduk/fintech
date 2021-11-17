@@ -18,23 +18,23 @@ import { drawerWidth } from './const';
 
 const navigation = [
   {
-    title: 'First task',
+    title: '1. ПРОСТІ ВІДСОТКИ',
     linkTo: routes.task1
   },
   {
-    title: 'Second task',
+    title: '2. НАРОЩЕННЯ ТА ДИСКОНТУВАННЯ ЗА СКЛАДНИМИ ВІДСОТКОВИМИ СТАВКАМИ',
     linkTo: routes.task2
   },
   {
-    title: 'Third task',
+    title: '3. ВИЗНАЧЕННЯ ІНШИХ ПАРАМЕТРІВ УГОД ІЗ ВІДСОТКОВИМИ СТАВКАМИ',
     linkTo: routes.task3
   },
   {
-    title: 'Fourth task',
+    title: '4. НЕПЕРЕРВНІ ВІДСОТКИ. НЕПЕРЕРВНЕ НАРОЩЕННЯ ТА ДИСКОНТУВАННЯ',
     linkTo: routes.task4
   },
   {
-    title: 'Fifth task',
+    title: '5. ЕКВІВАЛЕНТНІСТЬ ВІДСОТКОВИХ СТАВОК ТА ЗМІНА УМОВ ФІНАНСОВИХ УГОД',
     linkTo: routes.task5
   }
 ];

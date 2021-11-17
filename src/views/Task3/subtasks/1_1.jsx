@@ -20,9 +20,9 @@ const Task3_1_1 = () => {
       <Formik
         initialValues={{
           year: '366',
-          s: '',
-          p: '',
-          t: ''
+          s: 120000,
+          p: 100000,
+          t: 150
         }}
         onSubmit={(values) => {
           const i = calculate_i(values.s, values.p, values.t, values.year);
