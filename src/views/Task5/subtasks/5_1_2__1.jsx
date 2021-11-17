@@ -6,15 +6,15 @@ import CardWrapper from 'src/components/CardWrapper';
 
 export const calculate = (ic, n) => (((1 + ic) ** n - 1) / n).toFixed(4);
 
-const Task5_1_2 = () => {
+const Task5_1_2__1 = () => {
   const [result, setResult] = useState();
 
   return (
     <CardWrapper title="Еквівалентність простої і складної відсоткових ставок">
       <Formik
         initialValues={{
-          ic: 0.01,
-          n: 1
+          ic: 0.25,
+          n: 3
         }}
         onSubmit={(values) => {
           const res = calculate(Number(values.ic), Number(values.n));
@@ -40,4 +40,4 @@ const Task5_1_2 = () => {
   );
 };
 
-export default Task5_1_2;
+export default Task5_1_2__1;

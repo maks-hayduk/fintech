@@ -34,7 +34,7 @@ const Task2_2_1__1 = () => {
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
               <Box mt={2}>
-                <Typography>Початкова величина боргу: {result}</Typography>
+                <Typography>Початковий борг: {result}</Typography>
               </Box>
             )}
           </Form>

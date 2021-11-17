@@ -4,17 +4,19 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
-export const calculate = (i, n) => ((1 - (1 + i) ** -n) / n).toFixed(4);
+export const calculate = (i, n) => {
+  return ((1 - (1 + i) ** -n) / n).toFixed(4);
+};
 
-const Task5_1_3 = () => {
+const Task5_1_3__2 = () => {
   const [result, setResult] = useState();
 
   return (
     <CardWrapper title="">
       <Formik
         initialValues={{
-          i: 0.01,
-          n: 1
+          i: 0.5811,
+          n: 2
         }}
         onSubmit={(values) => {
           const res = calculate(Number(values.i), Number(values.n));
@@ -40,4 +42,4 @@ const Task5_1_3 = () => {
   );
 };
 
-export default Task5_1_3;
+export default Task5_1_3__2;

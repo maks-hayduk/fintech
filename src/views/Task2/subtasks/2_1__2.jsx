@@ -4,9 +4,7 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
-export const calculate2_1S = (p, i, n) => (p * (1 + i) ** n).toFixed(2);
-
-export const calculate2_1Scd = (p, i, c, d) => (p * (1 + i) ** c * (1 + d * i)).toFixed(2);
+export const calculate2_1Scd = (p, i, c, d) => (p * (1 + i) ** c * (1 + (d / 365) * i)).toFixed(2);
 
 const Task2_1__2 = () => {
   const [result, setResult] = useState();
@@ -15,10 +13,10 @@ const Task2_1__2 = () => {
     <CardWrapper>
       <Formik
         initialValues={{
-          p: 1,
-          i: 0.01,
-          c: 1,
-          d: 0.01
+          p: 300000,
+          i: 0.25,
+          c: 2,
+          d: 155
         }}
         onSubmit={(values) => {
           const res = calculate2_1Scd(
@@ -44,7 +42,7 @@ const Task2_1__2 = () => {
               <InputField name="c" label="Ціла частина років нарахування" placeholder="" />
             </Box>
             <Box mt={2}>
-              <InputField name="d" label="Дробова частина років" placeholder="" />
+              <InputField name="d" label="дні" placeholder="" />
             </Box>
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (

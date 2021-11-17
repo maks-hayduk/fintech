@@ -4,7 +4,9 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
-export const calculate_j = (i, m) => (m * ((1 + i) ** (1 / m) - 1)).toFixed(4);
+export const calculate_j = (i, m) => {
+  return (m * ((1 + i) ** (1 / m) - 1)).toFixed(4);
+};
 
 const Task2_1_2__2 = () => {
   const [result, setResult] = useState();
@@ -13,11 +15,11 @@ const Task2_1_2__2 = () => {
     <CardWrapper>
       <Formik
         initialValues={{
-          j: 0.01,
-          m: 1
+          j: 0.2194,
+          m: 12
         }}
         onSubmit={(values) => {
-          const res = calculate_j(Number(values.i), Number(values.m));
+          const res = calculate_j(Number(values.j), Number(values.m));
           setResult([res]);
         }}
       >
@@ -30,7 +32,7 @@ const Task2_1_2__2 = () => {
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
               <Box mt={2}>
-                <Typography>I: {result}</Typography>
+                <Typography>Номінальна ставка: {result}</Typography>
               </Box>
             )}
           </Form>

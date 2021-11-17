@@ -6,15 +6,15 @@ import CardWrapper from 'src/components/CardWrapper';
 
 export const calculate = (i, t) => ((360 / t) * (1 - (1 + i) ** (-t / 365))).toFixed(4);
 
-const Task5_1_3 = () => {
+const Task5_1_3__4 = () => {
   const [result, setResult] = useState();
 
   return (
     <CardWrapper title="">
       <Formik
         initialValues={{
-          i: 0.01,
-          t: 1
+          i: 0.1713,
+          t: 180
         }}
         onSubmit={(values) => {
           const res = calculate(Number(values.i), Number(values.t));
@@ -40,4 +40,4 @@ const Task5_1_3 = () => {
   );
 };
 
-export default Task5_1_3;
+export default Task5_1_3__4;

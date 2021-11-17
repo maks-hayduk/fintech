@@ -13,8 +13,8 @@ const Task2_2_2__4 = () => {
     <CardWrapper title="">
       <Formik
         initialValues={{
-          d: 0.01,
-          m: 1
+          d: 0.1855,
+          m: 4
         }}
         onSubmit={(values) => {
           const res = calculate(Number(values.d), Number(values.m));

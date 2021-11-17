@@ -13,10 +13,10 @@ const Task2_2_1__2 = () => {
     <CardWrapper title="">
       <Formik
         initialValues={{
-          s: 1,
-          n: 1,
-          m: 1,
-          j: 0.01
+          s: 10000,
+          n: 3,
+          m: 4,
+          j: 0.3
         }}
         onSubmit={(values) => {
           const res = calculate(
@@ -43,7 +43,7 @@ const Task2_2_1__2 = () => {
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
               <Box mt={2}>
-                <Typography>Початкова величина боргу: {result}</Typography>
+                <Typography>Початкова боргу: {result}</Typography>
               </Box>
             )}
           </Form>
