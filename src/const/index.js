@@ -3,5 +3,6 @@ export const routes = Object.freeze({
   task2: '/task/2',
   task3: '/task/3',
   task4: '/task/4',
-  task5: '/task/5'
+  task5: '/task/5',
+  task7: '/task/7'
 });

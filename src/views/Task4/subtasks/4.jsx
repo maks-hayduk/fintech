@@ -19,9 +19,9 @@ const Task4_4 = () => {
     <CardWrapper title="Розрахунок множника нарощення для експонентної залежності">
       <Formik
         initialValues={{
-          sigma: '',
-          a: '',
-          n: ''
+          sigma: 5,
+          a: 10,
+          n: 5
         }}
         onSubmit={(values) => {
           setResult(calculate_multiplier(values.sigma, values.a, values.n));

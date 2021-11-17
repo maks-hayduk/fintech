@@ -20,9 +20,9 @@ const Task3_2_2 = () => {
       <Formik
         initialValues={{
           percentage: 'simple',
-          s: '',
-          p: '',
-          n: ''
+          s: 1500,
+          p: 1000,
+          n: 3
         }}
         onSubmit={(values) => {
           if (values.percentage === 'simple') {
