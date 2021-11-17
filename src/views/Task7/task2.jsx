@@ -3,6 +3,7 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import { useState } from 'react';
 import Table from '../../components/Table';
+import CardWrapper from '../../components/CardWrapper';
 
 const tableConfig = [
   {
@@ -40,93 +41,102 @@ const Task2 = () => {
   const [rows, setRows] = useState();
 
   return (
-    <Formik
-      initialValues={{
-        n: '5',
-        d: '100000',
-        i: '0.22',
-        g: '0.2'
-      }}
-      onSubmit={(values) => {
-        let arr_res = [];
-        let d_copy = Number(values.d);
-        for (let i = 4; i >= 1; i--) {
-          let temp = R(d_copy, Number(values.i), i);
-          arr_res.push(temp);
-          d_copy -= temp;
-        }
-        arr_res.push(0);
+    <CardWrapper title="Постійні внески у фонд(мова йтиме про ренту постнумерандо)">
+      <Box mb={2}>
+        <Typography>
+          Продовжимо попередній приклад, взявши до уваги, що термінові виплати включають проценти, а
+          інші умови зберігаються. Нехай внески у фонд надходять тільки останні чотири роки.
+        </Typography>
+      </Box>
 
-        const wytrty_val = wytrty(
-          Number(values.d),
-          Number(values.g),
-          Number(values.i),
-          Number(values.n) - 1
-        );
-        const vnsk_val = R(Number(values.d), Number(values.i), Number(values.n) - 1);
+      <Formik
+        initialValues={{
+          n: '5',
+          d: '100000',
+          i: '0.22',
+          g: '0.2'
+        }}
+        onSubmit={(values) => {
+          let arr_res = [];
+          let d_copy = Number(values.d);
+          for (let i = 4; i >= 1; i--) {
+            let temp = R(d_copy, Number(values.i), i);
+            arr_res.push(temp);
+            d_copy -= temp;
+          }
+          arr_res.push(0);
 
-        const wytrty_arr = [ps(Number(values.d), Number(values.g))];
-        const vnsk_arr = [0];
-        for (let i = 0; i < Number(values.n) - 1; i++) {
-          wytrty_arr.push(wytrty_val);
-          vnsk_arr.push(vnsk_val);
-        }
+          const wytrty_val = wytrty(
+            Number(values.d),
+            Number(values.g),
+            Number(values.i),
+            Number(values.n) - 1
+          );
+          const vnsk_val = R(Number(values.d), Number(values.i), Number(values.n) - 1);
 
-        let dict = {
-          pers: ps(Number(values.d), Number(values.g)),
-          vnsk: vnsk_arr,
-          vtr: wytrty_arr,
-          nkp: arr_res.reverse()
-        };
+          const wytrty_arr = [ps(Number(values.d), Number(values.g))];
+          const vnsk_arr = [0];
+          for (let i = 0; i < Number(values.n) - 1; i++) {
+            wytrty_arr.push(wytrty_val);
+            vnsk_arr.push(vnsk_val);
+          }
 
-        const tableData = [];
+          let dict = {
+            pers: ps(Number(values.d), Number(values.g)),
+            vnsk: vnsk_arr,
+            vtr: wytrty_arr,
+            nkp: arr_res.reverse()
+          };
 
-        for (let i = 0; i < values.n; i += 1) {
-          tableData.push({
-            pers: dict.pers,
-            vnsk: dict.vnsk[i],
-            vtr: dict.vtr[i],
-            nkp: dict.nkp[i]
-          });
-        }
+          const tableData = [];
 
-        setRows(tableData);
+          for (let i = 0; i < values.n; i += 1) {
+            tableData.push({
+              pers: dict.pers,
+              vnsk: dict.vnsk[i].toFixed(2),
+              vtr: dict.vtr[i].toFixed(2),
+              nkp: dict.nkp[i].toFixed(2)
+            });
+          }
 
-        setResult(dict);
-      }}
-    >
-      {({ handleSubmit }) => (
-        <Form>
-          <InputField name="n" label="Кількість років" placeholder="Кількість років" />
-          <Box mt={2} mb={2}>
-            <InputField name="d" label="Розмір позики" placeholder="Розмір позики" />
-          </Box>
-          <Box mt={2} mb={2}>
-            <InputField name="i" label="Відсоткова ставка" placeholder="Відсоткова ставка" />
-          </Box>
-          <Box mt={2} mb={2}>
-            <InputField
-              name="g"
-              label="Відсотки нарахування у фонд"
-              placeholder="Відсотки нарахування у фонд"
-            />
-          </Box>
-          <Button onClick={handleSubmit}>Submit</Button>
-          {result && (
-            <>
-              <Box mt={2}>
-                <Typography>Коефіцієнт нарощення постійної ренти: {result[0]} грн</Typography>
-              </Box>
-            </>
-          )}
-          {rows && (
+          setRows(tableData);
+
+          setResult(dict);
+        }}
+      >
+        {({ handleSubmit }) => (
+          <Form>
+            <InputField name="n" label="Кількість років" placeholder="Кількість років" />
             <Box mt={2} mb={2}>
-              <Table rows={rows} tableConfig={tableConfig} />
+              <InputField name="d" label="Розмір позики" placeholder="Розмір позики" />
             </Box>
-          )}
-        </Form>
-      )}
-    </Formik>
+            <Box mt={2} mb={2}>
+              <InputField name="i" label="Відсоткова ставка" placeholder="Відсоткова ставка" />
+            </Box>
+            <Box mt={2} mb={2}>
+              <InputField
+                name="g"
+                label="Відсотки нарахування у фонд"
+                placeholder="Відсотки нарахування у фонд"
+              />
+            </Box>
+            <Button onClick={handleSubmit}>Submit</Button>
+            {result && (
+              <>
+                <Box mt={2}>
+                  <Typography>Коефіцієнт нарощення постійної ренти: {result[0]} грн</Typography>
+                </Box>
+              </>
+            )}
+            {rows && (
+              <Box mt={2} mb={2}>
+                <Table rows={rows} tableConfig={tableConfig} />
+              </Box>
+            )}
+          </Form>
+        )}
+      </Formik>
+    </CardWrapper>
   );
 };
 

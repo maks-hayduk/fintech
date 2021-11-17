@@ -3,6 +3,7 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import { useState } from 'react';
 import Table from '../../components/Table';
+import CardWrapper from '../../components/CardWrapper';
 
 export const d = (D, n) => (D / n).toFixed(2);
 
@@ -38,77 +39,86 @@ const Task4 = () => {
   const [rows, setRows] = useState();
 
   return (
-    <Formik
-      initialValues={{
-        n: '5',
-        d: '1000000',
-        g: '0.1'
-      }}
-      onSubmit={(values) => {
-        const vyp_borg = Number(d(Number(values.d), Number(values.n)));
+    <CardWrapper title="Погашення основного боргу рівними терміновими виплатами">
+      <Box mb={2}>
+        <Typography>
+          Заборгованість у 1 000 000 грн. потрібно виплатити впродовж п’яти років однаковими
+          щорічними виплатами. Побудувати план погашення заборгованості за умови, що за позику
+          виплачується 10% річних, а виплати постнумерандо.
+        </Typography>
+      </Box>
+      <Formik
+        initialValues={{
+          n: '5',
+          d: '1000000',
+          g: '0.1'
+        }}
+        onSubmit={(values) => {
+          const vyp_borg = Number(d(Number(values.d), Number(values.n)));
 
-        const zal_arr = [];
-        let d_temp = Number(values.d);
-        for (let i = 0; i < Number(values.n); i++) {
-          zal_arr.push(d_temp);
-          d_temp -= vyp_borg;
-        }
+          const zal_arr = [];
+          let d_temp = Number(values.d);
+          for (let i = 0; i < Number(values.n); i++) {
+            zal_arr.push(d_temp);
+            d_temp -= vyp_borg;
+          }
 
-        const pers = [];
-        for (let i = 0; i < Number(values.n); i++) {
-          pers.push((Number(values.d) - i * vyp_borg) * Number(values.g));
-        }
+          const pers = [];
+          for (let i = 0; i < Number(values.n); i++) {
+            pers.push((Number(values.d) - i * vyp_borg) * Number(values.g));
+          }
 
-        const vytr_arr = [];
-        for (let i = 0; i < Number(values.n); i++) {
-          vytr_arr.push(pers[i] + vyp_borg);
-        }
+          const vytr_arr = [];
+          for (let i = 0; i < Number(values.n); i++) {
+            vytr_arr.push(pers[i] + vyp_borg);
+          }
 
-        const dict = {
-          zal: zal_arr,
-          vtr: vytr_arr,
-          vypl: vyp_borg,
-          pers: pers
-        };
-
-        setResult(dict);
-
-        const tableData = [];
-
-        for (let i = 0; i < values.n; i += 1) {
-          tableData.push({
-            zal: zal_arr[i],
-            vtr: vytr_arr[i],
+          const dict = {
+            zal: zal_arr,
+            vtr: vytr_arr,
             vypl: vyp_borg,
-            pers: pers[i]
-          });
-        }
+            pers: pers
+          };
 
-        setRows(tableData);
-      }}
-    >
-      {({ handleSubmit }) => (
-        <Form>
-          <InputField name="n" label="Кількість років" placeholder="Кількість років" />
-          <Box mt={2} mb={2}>
-            <InputField name="d" label="Розмір позики" placeholder="Розмір позики" />
-          </Box>
-          <Box mt={2} mb={2}>
-            <InputField
-              name="g"
-              label="Відсотки нарахування у фонд"
-              placeholder="Відсотки нарахування у фонд"
-            />
-          </Box>
-          <Button onClick={handleSubmit}>Submit</Button>
-          {rows && (
+          setResult(dict);
+
+          const tableData = [];
+
+          for (let i = 0; i < values.n; i += 1) {
+            tableData.push({
+              zal: zal_arr[i],
+              vtr: vytr_arr[i],
+              vypl: vyp_borg,
+              pers: pers[i]
+            });
+          }
+
+          setRows(tableData);
+        }}
+      >
+        {({ handleSubmit }) => (
+          <Form>
+            <InputField name="n" label="Кількість років" placeholder="Кількість років" />
             <Box mt={2} mb={2}>
-              <Table rows={rows} tableConfig={tableConfig} />
+              <InputField name="d" label="Розмір позики" placeholder="Розмір позики" />
             </Box>
-          )}
-        </Form>
-      )}
-    </Formik>
+            <Box mt={2} mb={2}>
+              <InputField
+                name="g"
+                label="Відсотки нарахування у фонд"
+                placeholder="Відсотки нарахування у фонд"
+              />
+            </Box>
+            <Button onClick={handleSubmit}>Submit</Button>
+            {rows && (
+              <Box mt={2} mb={2}>
+                <Table rows={rows} tableConfig={tableConfig} />
+              </Box>
+            )}
+          </Form>
+        )}
+      </Formik>
+    </CardWrapper>
   );
 };
 

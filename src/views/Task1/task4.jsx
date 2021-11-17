@@ -6,7 +6,7 @@ import { useState } from 'react';
 export const calc = (p, i, n) => {
   let nm = 1;
   for (let j = 0; j < n; j += 1) {
-    nm *= 1 + (30 / 360) * i;
+    nm *= 1 + (30 / 366) * i;
   }
 
   return p * nm;
