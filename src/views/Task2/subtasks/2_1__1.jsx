@@ -13,9 +13,9 @@ const Task2_1__1 = () => {
     <CardWrapper title="2.1. Нарощення за складними відсотковими ставками">
       <Formik
         initialValues={{
-          p: 1,
-          n: 1,
-          i: 0.01
+          p: 100000,
+          n: 3,
+          i: 0.2
         }}
         onSubmit={(values) => {
           const res = calculate2_1S(Number(values.p), Number(values.i), Number(values.n));

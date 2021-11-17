@@ -4,7 +4,9 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
-export const calculate_i = (j, m) => ((1 + j / m) ** m - 1).toFixed(4);
+export const calculate_i = (j, m) => {
+  return ((1 + j / m) ** m - 1).toFixed(4);
+};
 
 const Task2_1_2__1 = () => {
   const [result, setResult] = useState();
@@ -13,8 +15,8 @@ const Task2_1_2__1 = () => {
     <CardWrapper title="2.1.2 Ефективна відсоткова ставка">
       <Formik
         initialValues={{
-          j: 0.01,
-          m: 1
+          j: 0.2,
+          m: 12
         }}
         onSubmit={(values) => {
           const res = calculate_i(Number(values.j), Number(values.m));
@@ -30,7 +32,7 @@ const Task2_1_2__1 = () => {
             <Button onClick={handleSubmit}>Calculate</Button>
             {result && (
               <Box mt={2}>
-                <Typography>I: {result}</Typography>
+                <Typography>Ефективна ставка: {result}</Typography>
               </Box>
             )}
           </Form>

@@ -10,12 +10,12 @@ const Task2_2_1__3 = () => {
   const [result, setResult] = useState();
 
   return (
-    <CardWrapper title="">
+    <CardWrapper title="Дисконтний множник">
       <Formik
         initialValues={{
-          n: 1,
-          m: 1,
-          j: 0.01
+          n: 4,
+          m: 4,
+          j: 0.3
         }}
         onSubmit={(values) => {
           const res = calculate(Number(values.n), Number(values.m), Number(values.j));

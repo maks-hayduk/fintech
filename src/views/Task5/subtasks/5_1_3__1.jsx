@@ -4,17 +4,19 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
-export const calculate = (d, n) => ((1 - n * d) ** (-1 / n) - 1).toFixed(4);
+export const calculate = (d, n) => {
+  return ((1 - n * d) ** (-1 / n) - 1).toFixed(4);
+};
 
-const Task5_1_3 = () => {
+const Task5_1_3__1 = () => {
   const [result, setResult] = useState();
 
   return (
     <CardWrapper title="Еквівалентність простої облікової і складної ставки відсотка">
       <Formik
         initialValues={{
-          d: 0.01,
-          n: 1
+          d: 0.3,
+          n: 2
         }}
         onSubmit={(values) => {
           const res = calculate(Number(values.d), Number(values.n));
@@ -40,4 +42,4 @@ const Task5_1_3 = () => {
   );
 };
 
-export default Task5_1_3;
+export default Task5_1_3__1;

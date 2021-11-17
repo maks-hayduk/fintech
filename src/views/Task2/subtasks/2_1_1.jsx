@@ -4,7 +4,9 @@ import { Form, Formik } from 'formik';
 import InputField from 'src/components/InputField';
 import CardWrapper from 'src/components/CardWrapper';
 
-export const calculate_s = (p, j, m, n) => (p * (1 + j / m) ** (n * m)).toFixed(2);
+export const calculate_s = (p, j, m, n) => {
+  return (p * (1 + j / m) ** (n * m)).toFixed(2);
+};
 
 const Task2_1_1 = () => {
   const [result, setResult] = useState();
@@ -13,10 +15,10 @@ const Task2_1_1 = () => {
     <CardWrapper title="2.1.1 Номінальна ставка відсотка">
       <Formik
         initialValues={{
-          p: 1,
-          j: 0.01,
-          m: 1,
-          n: 1
+          p: 100000,
+          j: 0.22,
+          m: 4,
+          n: 2.58
         }}
         onSubmit={(values) => {
           const res = calculate_s(

@@ -23,11 +23,11 @@ const Task5_2_1__2 = () => {
       <Formik
         initialValues={{
           i: 0.01,
-          Sj: '1;1;1',
-          tj: '10;20;30;',
-          Sk: '1;1;1',
-          tk: '10;20;30;',
-          date: 20,
+          Sj: '10000;50000',
+          tj: '100;150',
+          Sk: '',
+          tk: '',
+          date: 200,
           k: 365
         }}
         onSubmit={(values) => {

@@ -19,10 +19,10 @@ const Task5_2_2__2 = () => {
     <CardWrapper title="">
       <Formik
         initialValues={{
-          i: 0.01,
-          S0: 10000,
-          Sk: '1;1;1',
-          tk: '10;20;30;',
+          i: 0.365,
+          S0: 47000,
+          Sk: '10000;15000;20000',
+          tk: '25;45;70;',
           k: 365
         }}
         onSubmit={(values) => {

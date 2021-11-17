@@ -13,10 +13,10 @@ const Task2_2_2__2 = () => {
     <CardWrapper title="">
       <Formik
         initialValues={{
-          s: 1,
-          n: 1,
-          m: 1,
-          f: 0.01
+          s: 100000,
+          n: 3.5,
+          m: 4,
+          f: 0.2
         }}
         onSubmit={(values) => {
           const res = calculate(
